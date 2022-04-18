@@ -1,5 +1,6 @@
 function createGrid(size){
    const container = document.querySelector('.container');
+   container.textContent = '';
    for(let i=0 ; i<size ; i++){
       for(let j=0;j<size;j++){
          let cell  = document.createElement('div');
@@ -11,8 +12,13 @@ function createGrid(size){
    }
 }
 
-function draw(){
-   this.classList.add('coloredCell');
+function addingDrawAbility(){
+   cells = document.querySelectorAll('.cell');
+   cells.forEach((cell)=>{
+      cell.addEventListener('mouseover',()=>{
+         cell.classList.add('coloredCell');
+      });
+   })
 }
 
 
@@ -26,16 +32,16 @@ function clear(){
 
 
 
+
 createGrid(16);
+addingDrawAbility()
 
-
-const cells = document.querySelectorAll('.cell');
-cells.forEach((cell)=>{
-   cell.addEventListener('mouseover', draw);
-})
 
 const clearCells = document.querySelector('#clear');
 clearCells.addEventListener('click',()=>{
    clear();
+   const newSize = prompt('Enter new size');
+   createGrid(newSize);
+   addingDrawAbility();
 });
 
