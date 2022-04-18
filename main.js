@@ -29,6 +29,14 @@ function clear(){
    })
 }
 
+function gettingNewSize(){
+   let size;
+   while(true){
+      size = prompt('Enter new size');
+      if(size<101 && size>0 && size != null) break;
+   }
+   return size;
+}
 
 
 
@@ -46,7 +54,7 @@ clearButton.addEventListener('click',()=>{
 
 const sizeButton = document.querySelector('#newSize');
 sizeButton.addEventListener('click',()=>{
-   const newSize = prompt('Enter new size');
+   const newSize = gettingNewSize();
    createGrid(newSize);
    addingDrawAbility();
 })
