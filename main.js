@@ -37,11 +37,16 @@ createGrid(16);
 addingDrawAbility()
 
 
-const clearCells = document.querySelector('#clear');
-clearCells.addEventListener('click',()=>{
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click',()=>{
    clear();
+   
+});
+
+const sizeButton = document.querySelector('#newSize');
+sizeButton.addEventListener('click',()=>{
    const newSize = prompt('Enter new size');
    createGrid(newSize);
    addingDrawAbility();
-});
+})
 
