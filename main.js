@@ -11,7 +11,9 @@ function createGrid(size){
    }
 }
 
-
+function draw(){
+   this.classList.add('coloredCell');
+}
 
 
 
@@ -20,5 +22,8 @@ function createGrid(size){
 createGrid(16);
 
 
-
+const cells = document.querySelectorAll('.cell');
+cells.forEach((cell)=>{
+   cell.addEventListener('mouseover', draw);
+})
 
