@@ -16,6 +16,13 @@ function draw(){
 }
 
 
+function clear(){
+   const cells = document.querySelectorAll('.cell');
+   cells.forEach((cell)=>{
+      cell.classList.remove('coloredCell');
+   })
+}
+
 
 
 
@@ -26,4 +33,9 @@ const cells = document.querySelectorAll('.cell');
 cells.forEach((cell)=>{
    cell.addEventListener('mouseover', draw);
 })
+
+const clearCells = document.querySelector('#clear');
+clearCells.addEventListener('click',()=>{
+   clear();
+});
 
