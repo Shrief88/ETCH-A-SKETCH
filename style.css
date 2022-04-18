@@ -1,9 +1,23 @@
-.container{
+body{
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 200px;
+
+}
+
+.grid{
    display: flex;
    flex-wrap: wrap;
    height: 960px;
    width: 960px;
    border: 0.1px solid black;
+}
+
+.buttons{
+   display: flex;
+   flex-direction: column;
 }
 
 .button{
