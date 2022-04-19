@@ -5,7 +5,7 @@ function createGrid(size){
       for(let j=0;j<size;j++){
          let cell  = document.createElement('div');
          cell.classList.add('cell');
-         let width = 500/size; // 500 is the width of the grid
+         let width = 600/size; // 500 is the width of the grid
          cell.style.width =`${width}px`; 
          grid.appendChild(cell); 
       }
@@ -58,9 +58,7 @@ function addingRainbowAbility(){
       cell.addEventListener('click',()=>{
             cell.style['background-color'] = random_rgb();
       });
-
    })
-   
 }
 
 function clear(){
@@ -83,45 +81,44 @@ function watchColorPicker() {
    return document.querySelector('#picker').value; 
 }
 
+function selectButton(buttonOne,buttonTwo,buttonThere){
+   buttonOne.classList.add('selectedButton');
+   buttonTwo.classList.remove('selectedButton');
+   buttonThere.classList.remove('selectedButton');
+}
+
 createGrid(16);
 addingDrawAbility(watchColorPicker())
 
 const pickerButton = document.querySelector('#picker');
+const colorButton = document.querySelector('#color');
+const eraseButton = document.querySelector('#erase');
+const rainbowButton = document.querySelector('#rainbow');
+const sizeButton = document.querySelector('#newSize');
+
+
 pickerButton.addEventListener('change',()=>{
-   const eraseButton = document.querySelector('#erase');
-   if(eraseButton.classList.length<2) addingDrawAbility(watchColorPicker());
-   
+   //making sure we are not in erase or rainbow mode
+   if(eraseButton.classList.length<2 && rainbowButton.classList.length<2) addingDrawAbility(watchColorPicker()); 
 })
 
-const colorButton = document.querySelector('#color');
+
 colorButton.addEventListener('click',()=>{
    addingDrawAbility(watchColorPicker());
-   colorButton.classList.add('selectedButton');
-   const eraseButton = document.querySelector('#erase');
-   eraseButton.classList.remove('selectedButton');
-   const rainbowButton = document.querySelector('#rainbow');
-   rainbowButton.classList.remove('selectedButton')
+   selectButton(colorButton,eraseButton,rainbowButton);
 })
 
-const eraseButton = document.querySelector('#erase');
+
 eraseButton.addEventListener('click',()=>{
    addingEraseAbility();
-   eraseButton.classList.add('selectedButton');
-   const colorButton = document.querySelector('#color');
-   colorButton.classList.remove('selectedButton')
-   const rainbowButton = document.querySelector('#rainbow');
-   rainbowButton.classList.remove('selectedButton')
+   selectButton(eraseButton,colorButton,rainbowButton);
 })
 
 
-const rainbowButton = document.querySelector('#rainbow');
+
 rainbowButton.addEventListener('click',()=>{
    addingRainbowAbility(watchColorPicker());
-   rainbowButton.classList.add('selectedButton');
-   const colorButton = document.querySelector('#color');
-   colorButton.classList.remove('selectedButton')
-   const eraseButton = document.querySelector('#erase');
-   eraseButton.classList.remove('selectedButton');
+   selectButton(rainbowButton,colorButton,eraseButton)
 })
 
 
@@ -130,11 +127,14 @@ clearButton.addEventListener('click',()=>{
    clear();   
 });
 
-const sizeButton = document.querySelector('#newSize');
+
 sizeButton.addEventListener('click',()=>{
    const newSize = gettingNewSize();
    createGrid(newSize);
-   addingDrawAbility(watchColorPicker());
+   //making sure we are not in erase or rainbow button
+   if(eraseButton.classList.length<2 && rainbowButton.classList.length<2) addingDrawAbility(watchColorPicker()); 
+   //making sure we are in rainbow mode
+   if(rainbowButton.classList.length>1) addingRainbowAbility();
 })
 
 
