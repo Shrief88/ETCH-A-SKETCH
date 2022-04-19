@@ -1,6 +1,7 @@
 # ETCH-A-SKETCH
 
-Create your own pixel art. 
+This is The Odin Projects ETCH-A-SKETCH project!
+
 
 <ul>
    <li>Select any color for the pen</li>
