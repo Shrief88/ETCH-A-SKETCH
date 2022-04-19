@@ -5,7 +5,7 @@ function createGrid(size){
       for(let j=0;j<size;j++){
          let cell  = document.createElement('div');
          cell.classList.add('cell');
-         let width = 600/size;
+         let width = 500/size; // 500 is the width of the grid
          cell.style.width =`${width}px`; 
          grid.appendChild(cell); 
       }
@@ -16,7 +16,7 @@ function addingDrawAbility(color){
    cells = document.querySelectorAll('.cell');
    cells.forEach((cell)=>{
       cell.addEventListener('mouseover',function (e){
-         if(e.buttons == 1 ){
+         if(e.buttons == 1 ){  // to trigger if the user was clicking on the left button of the mouse
             cell.style['background-color'] = color;
          }
       });
