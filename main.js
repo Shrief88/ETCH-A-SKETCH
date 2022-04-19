@@ -12,16 +12,16 @@ function createGrid(size){
    }
 }
 
-function addingDrawAbility(){
+function addingDrawAbility(color){
    cells = document.querySelectorAll('.cell');
    cells.forEach((cell)=>{
       cell.addEventListener('mouseover',function (e){
          if(e.buttons == 1 ){
-            cell.classList.add('coloredCell');
+            cell.style['background-color'] = color;
          }
       });
       cell.addEventListener('click',()=>{
-            cell.classList.add('coloredCell');
+            cell.style['background-color'] = color;
       });
 
    })
@@ -32,20 +32,19 @@ function addingEraseAbility(){
    cells.forEach((cell)=>{
       cell.addEventListener('mouseover',function (e){
          if(e.buttons == 1 || e.buttons == 3){
-            cell.classList.remove('coloredCell');
+            cell.style['background-color'] = 'white';
          }
       });
       cell.addEventListener('click',()=>{
-         cell.classList.remove('coloredCell');
+         cell.style['background-color'] = 'white';
    });
    })
 }
 
-
 function clear(){
    const cells = document.querySelectorAll('.cell');
    cells.forEach((cell)=>{
-      cell.classList.remove('coloredCell');
+      cell.style['background-color'] = 'white';
    })
 }
 
@@ -58,16 +57,23 @@ function gettingNewSize(){
    return size;
 }
 
-
-
-
+function watchColorPicker() {
+   return document.querySelector('#picker').value; 
+}
 
 createGrid(16);
-addingDrawAbility()
+addingDrawAbility(watchColorPicker())
+
+const pickerButton = document.querySelector('#picker');
+pickerButton.addEventListener('change',()=>{
+   addingDrawAbility(watchColorPicker());
+})
+
+
 
 const colorButton = document.querySelector('#color');
 colorButton.addEventListener('click',()=>{
-   addingDrawAbility();
+   addingDrawAbility(watchColorPicker());
    colorButton.classList.add('selectedButton');
    const eraseButton = document.querySelector('#erase');
    eraseButton.classList.remove('selectedButton');

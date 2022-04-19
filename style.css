@@ -21,11 +21,20 @@ h1{
    height: 700px;
    width: 700px;
    border: 0.1px solid black;
+   background-color: white;
 }
 
 .buttons{
    display: flex;
    flex-direction: column;
+   align-items: center;
+}
+
+
+#picker{
+   width: 80px;
+   height: 80px;
+   border: none;
 }
 
 .button{
@@ -33,6 +42,7 @@ h1{
    padding: 20px;
    border-radius: 10px;
    font-size: 20px;
+   width: 300px;
  }
 
  .button:active{
@@ -53,6 +63,3 @@ h1{
 }
 
 
-.coloredCell{
-   background-color: black;
-}
