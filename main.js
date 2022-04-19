@@ -5,7 +5,7 @@ function createGrid(size){
       for(let j=0;j<size;j++){
          let cell  = document.createElement('div');
          cell.classList.add('cell');
-         let width = 700/size;
+         let width = 600/size;
          cell.style.width =`${width}px`; 
          grid.appendChild(cell); 
       }
@@ -89,7 +89,7 @@ addingDrawAbility(watchColorPicker())
 const pickerButton = document.querySelector('#picker');
 pickerButton.addEventListener('change',()=>{
    const eraseButton = document.querySelector('#erase');
-   if(eraseButton.classList<2) addingDrawAbility(watchColorPicker());
+   if(eraseButton.classList.length<2) addingDrawAbility(watchColorPicker());
    
 })
 

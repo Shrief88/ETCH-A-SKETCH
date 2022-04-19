@@ -1,6 +1,6 @@
 # ETCH-A-SKETCH
 
-This is The Odin Projects ETCH-A-SKETCH project!
+This is The Odin Project ETCH-A-SKETCH project!
 
 
 <ul>
