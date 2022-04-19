@@ -23,7 +23,6 @@ function addingDrawAbility(color){
       cell.addEventListener('click',()=>{
             cell.style['background-color'] = color;
       });
-
    })
 }
 
@@ -31,7 +30,7 @@ function addingEraseAbility(){
    cells = document.querySelectorAll('.cell');
    cells.forEach((cell)=>{
       cell.addEventListener('mouseover',function (e){
-         if(e.buttons == 1 || e.buttons == 3){
+         if(e.buttons == 1 ){
             cell.style['background-color'] = 'white';
          }
       });
@@ -39,6 +38,29 @@ function addingEraseAbility(){
          cell.style['background-color'] = 'white';
    });
    })
+}
+
+function random_rgb() {
+   let red = Math.random() * 255;
+   let green = Math.random() * 255; 
+   let black = Math.random() * 255;
+   return `rgb(${red.toFixed(0)},${green.toFixed(0)},${black.toFixed(0)})`;
+}
+
+function addingRainbowAbility(){
+   cells = document.querySelectorAll('.cell');
+   cells.forEach((cell)=>{
+      cell.addEventListener('mouseover',function (e){
+         if(e.buttons == 1 ){
+            cell.style['background-color'] = random_rgb();
+         }
+      });
+      cell.addEventListener('click',()=>{
+            cell.style['background-color'] = random_rgb();
+      });
+
+   })
+   
 }
 
 function clear(){
@@ -66,10 +88,10 @@ addingDrawAbility(watchColorPicker())
 
 const pickerButton = document.querySelector('#picker');
 pickerButton.addEventListener('change',()=>{
-   addingDrawAbility(watchColorPicker());
+   const eraseButton = document.querySelector('#erase');
+   if(eraseButton.classList<2) addingDrawAbility(watchColorPicker());
+   
 })
-
-
 
 const colorButton = document.querySelector('#color');
 colorButton.addEventListener('click',()=>{
@@ -77,21 +99,8 @@ colorButton.addEventListener('click',()=>{
    colorButton.classList.add('selectedButton');
    const eraseButton = document.querySelector('#erase');
    eraseButton.classList.remove('selectedButton');
-
-})
-
-
-const clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click',()=>{
-   clear();
-   
-});
-
-const sizeButton = document.querySelector('#newSize');
-sizeButton.addEventListener('click',()=>{
-   const newSize = gettingNewSize();
-   createGrid(newSize);
-   addingDrawAbility();
+   const rainbowButton = document.querySelector('#rainbow');
+   rainbowButton.classList.remove('selectedButton')
 })
 
 const eraseButton = document.querySelector('#erase');
@@ -100,5 +109,36 @@ eraseButton.addEventListener('click',()=>{
    eraseButton.classList.add('selectedButton');
    const colorButton = document.querySelector('#color');
    colorButton.classList.remove('selectedButton')
+   const rainbowButton = document.querySelector('#rainbow');
+   rainbowButton.classList.remove('selectedButton')
 })
+
+
+const rainbowButton = document.querySelector('#rainbow');
+rainbowButton.addEventListener('click',()=>{
+   addingRainbowAbility(watchColorPicker());
+   rainbowButton.classList.add('selectedButton');
+   const colorButton = document.querySelector('#color');
+   colorButton.classList.remove('selectedButton')
+   const eraseButton = document.querySelector('#erase');
+   eraseButton.classList.remove('selectedButton');
+})
+
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click',()=>{
+   clear();   
+});
+
+const sizeButton = document.querySelector('#newSize');
+sizeButton.addEventListener('click',()=>{
+   const newSize = gettingNewSize();
+   createGrid(newSize);
+   addingDrawAbility(watchColorPicker());
+})
+
+
+
+
+
 
